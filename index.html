@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DonateMe</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/logo.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-gray-900">
+              <a href="/">
+                  <img src="./assets/donateMeDashboardLogo.svg" alt="" height="100" width="150">
+              </a>
+            </div>
+            <nav class="hidden md:flex space-x-6 text-gray-600 font-medium">
+                <a href="/" class="hover:text-purple-600 transition-colors">Home</a>
+                <a href="./support.html" class="hover:text-purple-600 transition-colors">Support</a>
+            </nav>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden bg-white border-t border-gray-200 hidden">
+            <nav class="px-4 py-3 space-y-2">
+                <a href="/" class="block py-2 px-3 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors">Home</a>
+                <a href="./support.html" class="block py-2 px-3 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors">Support</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 md:py-16">
+
+        <!-- Hero Section -->
+        <section class="mb-24 flex justify-center items-center min-h-[220px]">
+            <div class="flex flex-col items-center">
+                <img src="./assets/donateMeDashboardLogo.svg" alt="" height="200" width="400" class="mx-auto mb-4">
+                <p class="text-lg md:text-xl text-gray-600 mb-8 text-center">
+                    Seamlessly integrate custom donations into your Shopify store. 
+                </p>
+            </div>
+        </section>
+
+        <!-- Feature Section 1 -->
+        <section class="grid md:grid-cols-2 items-center gap-12 mb-24">
+            <div class="order-2 md:order-1">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight mb-4">
+                    Simplify Your Purpose
+                </h2>
+                <h3 class="text-2xl md:text-3xl font-semibold text-gray-800 mb-4">
+                   Flexible donations, zero hassle.
+                </h3>
+                <p class="text-lg text-gray-600 mb-6">
+                  Donors can specify their contribution amount and proceed directly to checkout. By eliminating the need to create separate products for different tiers, this functionality allows you to dedicate more time and resources to your community.
+                </p>
+                <!-- <h3 class="text-xl font-bold mt-4 mb-2">Key Features:</h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-600">
+                    <li>Customizable Preset Donations</li>
+                    <li>Beautiful, Responsive Widget Design</li>
+                    <li>Dynamic Currency Integration</li>
+                    <li>Flexible Donation Controls</li>
+                    <li>Direct Cart Integration</li>
+                    <li>Periodic Donation Reset</li>
+                    <li>Easy Installation</li>
+                    <li>Visual Customization</li>
+                </ul> -->
+            </div>
+            <div class="order-1 md:order-2">
+                <img src="./assets/img.png" alt="Illustration of people and a large heart" class="w-full rounded-xl shadow-lg">
+            </div>
+        </section>
+
+          <section class="mb-24">
+            <h2 class="text-center text-3xl md:text-4xl font-extrabold text-gray-900 mb-8">
+                Key Features That Set DonateMe Apart:
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Customizable Preset Donations</h3>
+                    <p class="text-gray-600">Create multiple donation tiers with smart number formatting that adapts to any currency.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Beautiful, Responsive Widget Design</h3>
+                    <p class="text-gray-600">Looks perfect on all devices from desktop to mobile with attractive animations.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Dynamic Currency Integration</h3>
+                    <p class="text-gray-600">Automatically adopts your store's currency settings with no configuration needed.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Flexible Donation Controls</h3>
+                    <p class="text-gray-600">Set minimum donation amounts and customize the entire donation experience.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Direct Cart Integration</h3>
+                    <p class="text-gray-600">One-click donation process with seamless checkout flow.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Easy Installation</h3>
+                    <p class="text-gray-600">Simple drag-and-drop setup on Shopify Online Store 2.0 themes.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Visual Customization</h3>
+                    <p class="text-gray-600">Match your donation widget perfectly to your brand's colors and style.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Feature Section 2 -->
+        <section class="grid md:grid-cols-2 items-center gap-12 mb-24">
+             <div>
+                <img src="./assets/second.png" alt="Illustration of a sales cart and delivery van" class="w-full rounded-xl shadow-lg">
+            </div>
+            <div>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-[#5d60ff] leading-tight mb-4">
+                    Simplify Your Management 
+                </h2>
+                <h3 class="text-2xl md:text-3xl font-semibold text-gray-800 mb-4">
+                    Process donations directly within your existing sales channel. 
+                </h3>
+                <p class="text-lg text-gray-600 mb-6">
+                    Simplify your operations with a single, integrated channel for all sales and donations. This feature cuts down on administrative work and keeps all your data organized.
+                </p>
+                 <!-- <h3 class="text-xl font-bold mt-4 mb-2">Merchant Benefits:</h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-600">
+                    <li>No Transaction Limits</li>
+                    <li>Mobile-Optimized Design</li>
+                    <li>Boost Customer Engagement</li>
+                    <li>Track Donation Performance</li>
+                    <li>Dedicated Support</li>
+                </ul> -->
+            </div>
+           
+        </section>
+
+         <section class="text-center max-w-4xl mx-auto mb-24">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Why Merchants Love DonateMe</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8 mt-8">
+                <div class="bg-white p-6 rounded-xl shadow-md text-left">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">No Transaction Limits</h3>
+                    <p class="text-gray-600">Accept donations of any size with custom amount options.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md text-left">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Mobile-Optimized Design</h3>
+                    <p class="text-gray-600">Perfect display on all screen sizes with no overlapping elements.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md text-left">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Boost Customer Engagement</h3>
+                    <p class="text-gray-600">Strengthen your relationship with socially-conscious shoppers.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md text-left">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Track Donation Performance</h3>
+                    <p class="text-gray-600">Monitor the success of your giving campaigns.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md text-left">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Dedicated Support</h3>
+                    <p class="text-gray-600">Get help when you need it from our responsive team.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 py-6">
+        <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-500">
+            <p>&copy; Copyright 2025 ORDEX All Right Reserved.</p>
+            <div class="space-x-4 mt-2 sm:mt-0">
+                <a href="./terms.html"  class="hover:underline">Terms of Use</a>
+                <a href="./privacy.html" class="hover:underline">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat button placeholder -->
+    <!-- <div class="fixed bottom-6 right-6 z-50">
+        <button class="bg-purple-600 text-white rounded-full p-4 shadow-lg hover:bg-purple-700 transition-colors">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 6a1 1 0 00-1-1h-2a1 1 0 00-1 1v2h-2a1 1 0 00-1 1v2a1 1 0 001 1h2v2a1 1 0 001 1h2a1 1 0 001-1v-2h2a1 1 0 001-1v-2a1 1 0 00-1-1h-2V7a1 1 0 00-1-1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+                <path d="M12 21a9 9 0 110-18 9 9 0 010 18zm0-2a7 7 0 100-14 7 7 0 000 14z" fill-rule="evenodd" clip-rule="evenodd"></path>
+            </svg>
+        </button>
+    </div> -->
+
+    <!-- Mobile menu script -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Close mobile menu when window is resized to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

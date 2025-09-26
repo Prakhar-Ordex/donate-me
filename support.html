@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DonateMate - Support</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/logo.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc;
+        }
+
+        .sidebar a.active {
+            background-color: #5d60ff;
+            color: white;
+        }
+
+        .content-section.hidden {
+            display: none;
+        }
+
+        /* Mobile sidebar styles */
+        .mobile-sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-sidebar.open {
+            transform: translateX(0);
+        }
+
+        /* Backdrop for mobile */
+        .backdrop {
+            backdrop-filter: blur(4px);
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-gray-900">
+                <a href="/">
+                    <img src="./assets/donateMeDashboardLogo.svg" alt="" height="100" width="150">
+                </a>
+            </div>
+            <nav class="hidden md:flex space-x-6 text-gray-600 font-medium">
+                <a href="./" class="hover:text-purple-600 transition-colors">Home</a>
+                <a href="./support.html" class="hover:text-purple-600 transition-colors">Support</a>
+            </nav>
+
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile backdrop -->
+    <div id="mobile-backdrop" class="fixed inset-0 bg-black bg-opacity-50 backdrop z-40 hidden md:hidden"></div>
+
+    <main class="container mx-auto px-4 py-8 md:py-16 max-w-7xl">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 text-center leading-tight mb-12">Support Center
+        </h1>
+
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Mobile Sidebar Navigation -->
+            <nav id="mobile-sidebar" class="fixed top-0 left-0 h-full w-80 bg-white shadow-xl z-50 mobile-sidebar md:hidden overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-gray-900">Navigation</h2>
+                        <button id="close-sidebar" class="p-2 rounded-lg hover:bg-gray-100">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <ul class="space-y-4">
+                        <!-- Page Navigation -->
+                        <li>
+                            <a href="./" class="block py-3 px-4 rounded-xl font-semibold text-gray-700 transition-colors hover:bg-gray-100 mobile-page-link">
+                                 Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./support.html" class="block py-3 px-4 rounded-xl font-semibold text-purple-600 bg-purple-50 mobile-page-link">
+                                 Support
+                            </a>
+                        </li>
+                        
+                        <!-- Divider -->
+                        <li><hr class="border-gray-200 my-4"></li>
+                        
+                        <!-- Section Navigation -->
+                        <li>
+                            <a href="#dashboard-docs"
+                                class="block py-3 px-4 rounded-xl font-semibold text-gray-700 transition-colors hover:bg-gray-100 active mobile-nav-link">Dashboard
+                                Documentation</a>
+                        </li>
+                        <li>
+                            <a href="#donation-widget"
+                                class="block py-3 px-4 rounded-xl font-semibold text-gray-700 transition-colors hover:bg-gray-100 mobile-nav-link">Donation
+                                Widget — Setup Guide</a>
+                        </li>
+                        <li>
+                            <a href="#progressbar"
+                                class="block py-3 px-4 rounded-xl font-semibold text-gray-700 transition-colors hover:bg-gray-100 mobile-nav-link">Donation
+                                Progress Bar Setup Guide</a>
+                        </li>
+                        <li>
+                            <a href="#settings-guide"
+                                class="block py-3 px-4 rounded-xl font-semibold text-gray-700 transition-colors hover:bg-gray-100 mobile-nav-link">Settings
+                                Guide</a>
+                        </li>
+                        <li>
+                            <a href="#faq"
+                                class="block py-3 px-4 rounded-xl font-semibold text-gray-700 transition-colors hover:bg-gray-100 mobile-nav-link">Frequently
+                                Asked Questions</a>
+                        </li>
+                        <li>
+                            <a href="#contact"
+                                class="block py-3 px-4 rounded-xl font-semibold text-gray-700 transition-colors hover:bg-gray-100 mobile-nav-link">Contact
+                                Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Desktop Sidebar Navigation -->
+            <nav class="hidden md:block bg-white p-6 rounded-2xl shadow-lg w-full md:w-1/4 h-fit sticky top-24 sidebar">
+                <ul class="space-y-4">
+                    <li>
+                        <a href="#dashboard-docs"
+                            class="block py-3 px-4 rounded-xl font-semibold text-gray-700 transition-colors hover:bg-gray-100 active desktop-nav-link">Dashboard
+                            Documentation</a>
+                    </li>
+                    <li>
+                        <a href="#donation-widget"
+                            class="block py-3 px-4 rounded-xl font-semibold text-gray-700 transition-colors hover:bg-gray-100 desktop-nav-link">Donation
+                            Widget — Setup Guide</a>
+                    </li>
+                    <li>
+                        <a href="#progressbar"
+                            class="block py-3 px-4 rounded-xl font-semibold text-gray-700 transition-colors hover:bg-gray-100 desktop-nav-link">Donation
+                            Progress Bar Setup Guide</a>
+                    </li>
+                    <li>
+                        <a href="#settings-guide"
+                            class="block py-3 px-4 rounded-xl font-semibold text-gray-700 transition-colors hover:bg-gray-100 desktop-nav-link">Settings
+                            Guide</a>
+                    </li>
+                    <li>
+                        <a href="#faq"
+                            class="block py-3 px-4 rounded-xl font-semibold text-gray-700 transition-colors hover:bg-gray-100 desktop-nav-link">Frequently
+                            Asked Questions</a>
+                    </li>
+                    <li>
+                        <a href="#contact"
+                            class="block py-3 px-4 rounded-xl font-semibold text-gray-700 transition-colors hover:bg-gray-100 desktop-nav-link">Contact
+                            Us</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Main Content Area -->
+            <div class="bg-white p-4 md:p-8 rounded-2xl shadow-lg w-full md:w-3/4">
+
+                <!-- FAQ Section -->
+                <section id="faq-section" class="content-section">
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Frequently Asked Questions</h2>
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold mt-8 mb-4">General Questions</h3>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">What is DonateMe?</h4>
+                            <p class="text-gray-600">
+                                DonateMe is a Shopify app that helps merchants add donation functionality to their
+                                stores, allowing customers to make donations during checkout or through dedicated
+                                donation widgets.
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">How do I install DonateMe?</h4>
+                            <p class="text-gray-600">
+                                Install DonateMe from the Shopify App Store. After installation, the onboarding flow
+                                will guide you to set up your first donation product.
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">Is DonateMe compatible with my Shopify
+                                theme?</h4>
+                            <p class="text-gray-600">
+                                Yes. DonateMe works with all Shopify themes. Our donation widgets and progress bars
+                                adapt to your store's design.
+                            </p>
+                        </div>
+                        <h3 class="text-2xl font-bold mt-8 mb-4">Subscription Plans</h3>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">What subscription plans are available?
+                            </h4>
+                            <p class="text-gray-600">
+                                DonateMe offers four plans: Free Plan, Bronze Plan, Silver Plan, and Gold Plan.
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">What are the limitations of the Free
+                                and Bronze plans?</h4>
+                            <p class="text-gray-600">
+                                Free and Bronze plans are limited to one donation product. For multiple donation
+                                products, upgrade to Silver or Gold.
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">How do I upgrade my subscription plan?
+                            </h4>
+                            <p class="text-gray-600">
+                                Go to the Plans tab in your DonateMe dashboard and select the plan that suits your
+                                needs. Follow the prompts to complete your upgrade.
+                            </p>
+                        </div>
+                        <h3 class="text-2xl font-bold mt-8 mb-4">Donation Products</h3>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">What is a donation product?</h4>
+                            <p class="text-gray-600">
+                                A donation product is a special Shopify product created by DonateMe that allows
+                                customers to make donations. It can have a fixed price or allow customers to choose
+                                their donation amount.
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">How do I create a donation product?
+                            </h4>
+                            <p class="text-gray-600">
+                                Go to the Products tab in your DonateMe dashboard, click Create, enter a title,
+                                description, and minimum donation amount, then save your new donation product.
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">Can I limit how many donation products
+                                customers can add to cart?</h4>
+                            <p class="text-gray-600">
+                                Yes. Donation products are designed to allow only one quantity per cart to prevent
+                                confusion.
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">Why can't I create more than one
+                                donation product?</h4>
+                            <p class="text-gray-600">
+                                Free and Bronze plans are limited to one donation product. Upgrade to Silver or Gold for
+                                unlimited products.
+                            </p>
+                        </div>
+                        <h3 class="text-2xl font-bold mt-8 mb-4">Widgets and Display</h3>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">How do I add a donation widget to my
+                                store?</h4>
+                            <p class="text-gray-600">
+                                Open the Shopify Theme Editor, click Add section or Add block, depending on your theme,
+                                select Donation Widget, and configure the widget settings and select your donation
+                                product.
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">How do I set up the donation progress
+                                bar?</h4>
+                            <p class="text-gray-600">
+                                Open the Shopify Theme Editor, add the Progress Bar Widget section or block, select your
+                                donation product and configure appearance settings, and set your fundraising goal in the
+                                product settings.
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">Can I customize the appearance of the
+                                donation widgets?</h4>
+                            <p class="text-gray-600">
+                                Yes. Both the donation widget and progress bar support customization including colors,
+                                font sizes, and button styles through the Shopify theme editor.
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">How do I remove the Powered by DonateMe
+                                branding?</h4>
+                            <p class="text-gray-600">
+                                Branding removal is available on Silver and Gold plans. In the theme editor, enable
+                                Remove Branding in the widget settings.
+                            </p>
+                        </div>
+                        <h3 class="text-2xl font-bold mt-8 mb-4">Donations and Orders</h3>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">How are donations processed?</h4>
+                            <p class="text-gray-600">
+                                Donations are processed as regular Shopify orders. When a customer donates, it creates a
+                                special variant of your donation product with their chosen amount.
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">Do donations appear in my Shopify
+                                orders?</h4>
+                            <p class="text-gray-600">
+                                Yes. All donations appear as regular orders in your Shopify admin for easy tracking and
+                                management.
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">How do I set up automatic fulfillment
+                                for donations?</h4>
+                            <p class="text-gray-600">
+                                In the DonateMe Settings tab, toggle on Auto-Fulfill Orders. This automatically marks
+                                donation orders as fulfilled.
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">Can I apply sales tax to donations?
+                            </h4>
+                            <p class="text-gray-600">
+                                Yes. In Settings, toggle Apply Sales Tax on or off for your donation products.
+                            </p>
+                        </div>
+                        <h3 class="text-2xl font-bold mt-8 mb-4">Analytics and Tracking</h3>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">How do I track donation progress?</h4>
+                            <p class="text-gray-600">
+                                The Reports tab shows real-time metrics including total donations and monthly donations.
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">Can I export donation data?</h4>
+                            <p class="text-gray-600">
+                                Yes. Export donation data from the Reports section of the dashboard.
+                            </p>
+                        </div>
+                        <h3 class="text-2xl font-bold mt-8 mb-4">Technical Support</h3>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">How do I get support for DonateMe?</h4>
+                            <p class="text-gray-600">
+                                Contact our support team at support@donateme.app for assistance with any issues or
+                                questions.
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">Does DonateMe work with other Shopify
+                                apps?</h4>
+                            <p class="text-gray-600">
+                                DonateMe is designed to be compatible with most Shopify apps. If you encounter
+                                conflicts, contact support and we can help investigate.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- progressbar   -->
+                <section id="progressbar-section" class="content-section">
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Donation Progress Bar Setup Guide</h2>
+                    <p class="text-gray-600 mb-4">
+                        Track your fundraising goals in real time with the Donation Progress Bar on your Shopify store.
+                    </p>
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold mt-8 mb-4">Adding the Progress Bar</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <li>Go to Shopify Admin → Online Store → Themes</li>
+                            <li>Click Customize on your active theme</li>
+                            <li>From the left sidebar, click Add section</li>
+                            <li>Select Donation Progress Bar</li>
+                            <li>The progress bar will now appear on your storefront preview</li>
+                        </ul>
+                        <img src="./assets/progress/image1.png" alt="">
+                        <h3 class="text-2xl font-bold mt-8 mb-4">Configuring Your Progress Bar</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <li><strong>Goal Amount:</strong> Set your fundraising target (e.g., $1,000) from the admin
+                                side of shopify.
+                                <img src="./assets/progress/image2.png" alt="">
+                            </li>
+                            <li><strong>Raised Amount:</strong> Automatically updates when donations are made.
+                                <img src="./assets/progress/image3.png" alt="">
+                            </li>
+                            <li><strong>Colors & Styling:</strong> Adjust bar color, background, and font style.
+                                <img src="./assets//progress/image4.png" alt="">
+                            </li>
+                            <li><strong>Placement:</strong> Add the section anywhere (homepage, cart, product page).
+                            </li>
+                        </ul>
+                        <h3 class="text-2xl font-bold mt-8 mb-4">How It Works</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <li>Each donation updates the Raised value in real time.</li>
+                            <li>The progress bar shows the percentage towards the Goal.</li>
+                            <li>Once the goal is reached, it displays 100% Complete.</li>
+                        </ul>
+                        <h3 class="text-2xl font-bold mt-8 mb-4">Example Use Case</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <li><strong>Goal:</strong> $1,000</li>
+                            <li><strong>Raised:</strong> $0 (initially)
+                                <img src="./assets/progress/image1.png" alt="">
+                            </li>
+                            <li>As customers donate, the raised amount increases and the bar fills up
+                                <img src="./assets/progress/image3.png" alt="">
+                            </li>
+                        </ul>
+                        <h3 class="text-2xl font-bold mt-8 mb-4">Support Resources</h3>
+                        <p class="text-gray-600">
+                            If you need assistance, please contact us:
+                        </p>
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                            </svg>
+                            <p class="text-gray-600">Email: <a href="mailto:support@donateme.app"
+                                    class="text-purple-600 hover:underline">support@donateme.app</a></p>
+                        </div>
+                        <aside class="p-4 mt-4 text-sm text-purple-600 bg-purple-50 rounded-lg">
+                            <strong>Pro Tip:</strong> Place the progress bar on your homepage to inspire more
+                            contributions by showing real-time impact.
+                        </aside>
+                    </div>
+                </section>
+
+                <!-- Contact Us Section (hidden by default) -->
+                <section id="contact-section" class="content-section hidden">
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Contact Us</h2>
+                    <p class="text-gray-600 mb-4">
+                        If you prefer to reach out directly, you can contact us using the information below.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                            </svg>
+                            <p class="text-gray-600">Email: <a href="mailto:support@donateme.com"
+                                    class="text-purple-600 hover:underline">support@donateme.app</a></p>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- dashboard  -->
+                <section id="dashboard-docs-section" class="content-section bg-white rounded-xl  mb-8">
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Dashboard Documentation</h2>
+
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="text-2xl font-bold mt-8 mb-4">🏠 Dashboard</h3>
+                            <p class="text-lg text-gray-600">The central hub for your app's performance.</p>
+                            <ul class="list-disc pl-8 space-y-2 text-gray-600">
+                                <li>📊 Subscription Plan → Shows your current plan (e.g., Gold Plan).</li>
+                                <li>💰 Donations Summary:
+                                    <ul class="list-disc pl-8 space-y-2 text-gray-600">
+                                        <li>This Month’s Donations</li>
+                                        <li>Lifetime Donations</li>
+                                    </ul>
+                                </li>
+                                <li>🆘 Support Section → Quick access to contact information and help.</li>
+                                <li>📈 Graph: Donation Over Time → A monthly breakdown of donations.</li>
+                                <img src="./assets/dashboard/image1.png" alt="">
+                            </ul>
+                        </div>
+
+                        <hr class="my-8 border-gray-300">
+
+                        <div>
+                            <h3 class="text-2xl font-bold mt-8 mb-4">📦 Manage Products</h3>
+                            <p class="text-lg text-gray-600">This section helps you manage all donation-related
+                                products.</p>
+                            <ul class="list-disc pl-8 space-y-2 text-gray-600">
+                                <li>📝 Manage donation-related products.</li>
+                                <li>🔍 Features:
+                                    <ul class="list-disc pl-8 space-y-2 text-gray-600">
+                                        <li>Search products</li>
+                                        <li>Filter products</li>
+                                        <li>View product status (Active/Inactive)</li>
+                                        <li>Last updated timestamp</li>
+                                    </ul>
+                                </li>
+                                <li>⚡ Actions: Create, Edit, Delete products.</li>
+                                <img src="./assets/dashboard/image3.png" alt="">
+                            </ul>
+                        </div>
+
+                        <hr class="my-8 border-gray-300">
+
+                        <div>
+                            <h3 class="text-2xl font-bold mt-8 mb-4">💳 Change Plan</h3>
+                            <ul class="list-disc pl-8 space-y-2 text-gray-600">
+                                <li>🔄 Upgrade or downgrade between available plans:
+                                    <ul class="list-disc pl-8 space-y-2 text-gray-600">
+                                        <li>🆓 Free Plan ($0/month) – Basic donation setup.</li>
+                                        <li>🥉 Bronze Plan ($8/month) – More transactions.</li>
+                                        <li>🥈 Silver Plan ($24/month) – Popular mid-tier.</li>
+                                        <li>🥇 Gold Plan ($79/month) – Premium tier with the highest limits.</li>
+                                    </ul>
+                                </li>
+                                <li>📌 Each plan shows:
+                                    <ul class="list-disc pl-8 space-y-2 text-gray-600">
+                                        <li>Included Donation Transactions</li>
+                                        <li>Transaction fee above limit</li>
+                                    </ul>
+                                </li>
+                                <li>✅ Current plan highlighted.</li>
+                                <img src="./assets/dashboard/image (20).png" alt="">
+                            </ul>
+                        </div>
+
+                        <hr class="my-8 border-gray-300">
+
+                        <div>
+                            <h3 class="text-2xl font-bold mt-8 mb-4">⚙️ Settings</h3>
+                            <ul class="list-disc pl-8 space-y-2 text-gray-600">
+                                <li>🛠 Configure app preferences.</li>
+                                <li>✏️ Update app details & customization options.</li>
+                                <img src="./assets/dashboard/image (21).png" alt="">
+                            </ul>
+                        </div>
+
+                        <hr class="my-8 border-gray-300">
+
+                        <div>
+                            <h3 class="text-2xl font-bold mt-8 mb-4">📊 Reports</h3>
+                            <ul class="list-disc pl-8 space-y-2 text-gray-600">
+                                <li>📑 Generate and view detailed donation reports.</li>
+                                <li>🔎 Analyze donation trends & performance.</li>
+                                <img src="./assets/dashboard/image (24).png">
+                                <img src="./assets/dashboard/image (22).png" alt="">
+                            </ul>
+                        </div>
+
+                        <hr class="my-8 border-gray-300">
+
+                        <div>
+                            <h3 class="text-2xl font-bold mt-8 mb-4">❓ Help</h3>
+                            <ul class="list-disc pl-8 space-y-2 text-gray-600">
+                                <li>📘 Access guides & support resources.</li>
+                                <li>📬 Contact support team for troubleshooting.</li>
+                            </ul>
+                        </div>
+
+                        <hr class="my-8 border-gray-300">
+
+                    </div>
+                </section>
+
+                <!-- widget -->
+                <section id="donation-widget-section" class="content-section bg-white  rounded-xl  mb-8">
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">🧩 Donation Widget — Setup Guide</h2>
+                    <p class="text-gray-600 mb-4">A step-by-step guide to installing and configuring the Donation Widget
+                        in your Shopify store.</p>
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold mt-8 mb-4">📥 Install the App</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <li>Go to the Shopify App Store and install DonateMe.</li>
+                            <li>Approve the required app permissions.</li>
+                        </ul>
+                        <h3 class="text-2xl font-bold mt-8 mb-4">➕ Add the Donation Widget to Your Theme</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <li>Go to Shopify Admin → Online Store → Themes.</li>
+                            <li>Click Customize on your active theme.</li>
+                            <li>From the left sidebar, click Add section.</li>
+                            <li>Select Donation Widget.</li>
+                            <li>The widget will appear in your theme preview.</li>
+                        </ul>
+                        <h3 class="text-2xl font-bold mt-8 mb-4">🎯 Configure the Widget</h3>
+                        <p class="text-gray-600">Without a selected donation product, you will see the No Product
+                            Selected message.</p>
+                        <img src="./assets/widget/image (2).png" alt="">
+                        <p class="text-gray-600">Once a donation product is chosen, the widget will display properly.
+                        </p>
+                        <img src="./assets/widget/image (3).png" alt="">
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <li>In the widget settings → select a Donation Product.</li>
+                            <img src="./assets/widget/image (4).png" alt="">
+                            <li>Configure features as required.</li>
+                            <img src="./assets/widget/image (5).png" alt="">
+                            <li>Click Save.</li>
+                        </ul>
+                        <h3 class="text-2xl font-bold mt-8 mb-4">💳 How Donations Work</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <li>Shoppers select a preset donation or enter a custom amount via "Other."</li>
+                            <li>Clicking Donate adds the donation product to their cart.</li>
+                            <li>At checkout, the donation is processed like any other product.</li>
+                        </ul>
+                        <h3 class="text-2xl font-bold mt-8 mb-4">⚙️ Advanced Settings</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <li><strong>Preset Values:</strong> Set fixed donation amounts like $10, $20, $30.</li>
+                            <img src="./assets/widget/image (6).png" alt="">
+                            <li><strong>Custom Donations:</strong> Enable "Other" so customers can type their own
+                                amount.</li>
+                            <img src="./assets/widget/image (7).png" alt="">
+                            <li><strong>Widget Placement:</strong> Drag & drop the widget anywhere in your theme
+                                (homepage, cart, product page).</li>
+                        </ul>
+                        <h3 class="text-2xl font-bold mt-8 mb-4">📊 Tracking Donations</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <li>Go to Shopify Admin → Products → Donation Product.</li>
+                            <li>Open Orders to see total donations.</li>
+                        </ul>
+                        <h3 class="text-2xl font-bold mt-8 mb-4">🙋 Support</h3>
+                        <p class="text-gray-600">Email: <a href="mailto:support@donateme.app"
+                                class="text-purple-600 hover:underline">support@donateme.app</a></p>
+                        <aside class="p-4 mt-4 text-sm text-purple-600 bg-purple-50 rounded-lg">
+                            <strong>Pro Tip:</strong> Use a dedicated "Donation" product so reporting stays clean in
+                            Shopify.
+                        </aside>
+                    </div>
+                </section>
+
+                <!-- setting guid  -->
+                <section id="settings-guide-section" class="content-section bg-white rounded-xl mb-8">
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">⚙️ Store Settings - Quick Guide</h2>
+                    <p class="text-gray-600 mb-4">
+                        Configure your donation system settings to customize order processing, email notifications, and
+                        tagging features.
+                    </p>
+
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="text-2xl font-bold mt-8 mb-4">General Settings</h3>
+                            <ul class="list-disc list-inside space-y-4 text-gray-600">
+                                <li>
+                                    <strong>Auto Fulfill Orders:</strong> Toggle ON/OFF to automatically mark donation
+                                    orders as fulfilled.
+                                    <ul class="list-disc list-inside space-y-1 ml-6 text-gray-500">
+                                        <li><strong>Enable:</strong> For digital donations (no shipping needed)</li>
+                                        <li><strong>Disable:</strong> For physical items requiring manual fulfillment
+                                        </li>
+                                        <img src="./assets/setting docs/img1.png" alt="">
+                                    </ul>
+                                </li>
+                                <li>
+                                    <strong>Sales Tax:</strong> Toggle ON/OFF to apply sales tax to donation products.
+                                </li>
+                                <img src="./assets/setting docs/img2.png" alt="">
+                                <li>
+                                    <strong>Shipping Requirements:</strong> Toggle ON/OFF to require a shipping address
+                                    for donations.
+                                    <ul class="list-disc list-inside space-y-1 ml-6 text-gray-500">
+                                        <li><strong>Enable:</strong> Only if sending physical thank-you items</li>
+                                        <li><strong>Disable:</strong> Recommended for most donations</li>
+                                    </ul>
+                                </li>
+                                <img src="./assets/setting docs/img3.png" alt="">
+                                <li>
+                                    <strong>Email Notifications:</strong> Toggle ON/OFF to send receipt emails to
+                                    donors.
+                                    <ul class="list-disc list-inside space-y-1 ml-6 text-gray-500">
+                                        <li><strong>Recommended:</strong> Keep enabled for better donor experience</li>
+                                    </ul>
+                                </li>
+                                <img src="./assets/setting docs/img4.png" alt="">
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-bold mt-8 mb-4">Order Tagging (Gold Plan Only)</h3>
+                            <p class="text-gray-600 mb-2">
+                                <strong>Purpose:</strong> Automatically tag orders containing donations.
+                            </p>
+                            <img src="./assets/setting docs/img5.png" alt="">
+                            <ul class="list-disc list-inside space-y-2 text-gray-600">
+                                <li>
+                                    <strong>How to use:</strong> Enter a tag value (e.g., "donation", "charitable").
+                                    Orders with donations get tagged automatically for easy filtering in Shopify admin.
+                                </li>
+                                <li>
+                                    <strong>Free/Bronze Plans:</strong> This feature is unavailable. Upgrade to Gold to
+                                    enable.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-bold mt-8 mb-4">Email Configuration</h3>
+                            <img src="./assets/setting docs/img6.png" alt="">
+                            <ul class="list-disc list-inside space-y-4 text-gray-600">
+                                <li>
+                                    <strong>From Email:</strong> Enter a professional sender email (e.g.,
+                                    donations@yourstore.com).
+                                    <ul class="list-disc list-inside space-y-1 ml-6 text-gray-500">
+                                        <li>Must be valid email format</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <strong>CC Email (Optional):</strong> Add multiple emails separated by commas.
+                                    <ul class="list-disc list-inside space-y-1 ml-6 text-gray-500">
+                                        <li>Useful for admin notifications and record-keeping</li>
+                                        <li>No duplicates allowed</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-bold mt-8 mb-4">Email Template</h3>
+                            <img src="./assets/setting docs/img7.png" alt="">
+                            <ul class="list-disc list-inside space-y-4 text-gray-600">
+                                <li>
+                                    <strong>Subject Line:</strong> Set a professional subject (e.g., "Thank you for your
+                                    donation").
+                                </li>
+                                <li>
+                                    <strong>Template Editor:</strong> Customize the receipt email using the text editor.
+                                </li>
+                                <li>
+                                    <strong>Dynamic Variables:</strong>
+                                    <ul class="list-disc list-inside space-y-1 ml-6 text-gray-500">
+                                        <li><code>{{donor_name}}</code>: Customer name</li>
+                                        <li><code>{{date}}</code>: Donation date</li>
+                                        <li><code>{{total}}</code>: Donation amount</li>
+                                    </ul>
+                                </li>
+                                <li class="mt-4">
+                                    <strong>Example:</strong>
+                                    <pre class="bg-gray-100 p-4 rounded-lg mt-2 text-sm text-gray-700">Dear {{donor_name}},
+Thank you for your donation of {{total}} on {{date}}.
+Best regards,
+[Your Organization]</pre>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-bold mt-8 mb-4">Saving Changes</h3>
+                            <ul class="list-disc list-inside space-y-4 text-gray-600">
+                                <li>
+                                    Make changes to any settings. The "Save Settings" button becomes active when changes
+                                    are detected.
+                                </li>
+                                <li>
+                                    Click "Save Settings" to apply all changes.
+                                </li>
+                                <li>
+                                    <strong>Validation:</strong> Fix any email format errors before saving.
+                                </li>
+                                <li>
+                                    <strong>Button states:</strong>
+                                    <ul class="list-disc list-inside space-y-1 ml-6 text-gray-500">
+                                        <li><strong>Gray (Disabled):</strong> No changes</li>
+                                        <li><strong>Blue (Enabled):</strong> Ready to save</li>
+                                        <li><strong>Loading:</strong> Saving in progress</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-bold mt-8 mb-4">Quick Troubleshooting</h3>
+                            <ul class="list-disc list-inside space-y-4 text-gray-600">
+                                <li>
+                                    <strong>Email errors:</strong> Check format (e.g., <code>user@domain.com</code>),
+                                    remove spaces, and avoid duplicates.
+                                </li>
+                                <li>
+                                    <strong>Not saving:</strong> Fix validation errors and check your internet
+                                    connection.
+                                </li>
+                                <li>
+                                    <strong>No receipt emails:</strong> Enable notifications toggle and verify the
+                                    "From" email.
+                                </li>
+                            </ul>
+                            <aside class="p-4 mt-4 text-sm text-purple-600 bg-purple-50 rounded-lg">
+                                <strong>Remember to save your settings after making changes!</strong>
+                            </aside>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 py-6 mt-16">
+        <div
+            class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-500">
+            <p>&copy; Copyright 2025 ORDEX All Right Reserved.</p>
+            <div class="space-x-4 mt-2 sm:mt-0">
+                <a href="terms.html" class="hover:underline">Terms of Use</a>
+                <a href="privacy.html" class="hover:underline">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript to handle section switching and mobile menu -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileSidebar = document.getElementById('mobile-sidebar');
+        const mobileBackdrop = document.getElementById('mobile-backdrop');
+        const closeSidebarBtn = document.getElementById('close-sidebar');
+        const desktopNavLinks = document.querySelectorAll('.desktop-nav-link');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        const contentSections = document.querySelectorAll('.content-section');
+
+        // Mobile menu toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileSidebar.classList.add('open');
+            mobileBackdrop.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close mobile menu
+        function closeMobileMenu() {
+            mobileSidebar.classList.remove('open');
+            mobileBackdrop.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        closeSidebarBtn.addEventListener('click', closeMobileMenu);
+        mobileBackdrop.addEventListener('click', closeMobileMenu);
+
+        // Show section function
+        function showSection(sectionId) {
+            contentSections.forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+            // Smooth scroll to top when section changes
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Handle navigation clicks for both desktop and mobile
+        function handleNavClick(e, navLinks) {
+            e.preventDefault();
+            navLinks.forEach(navLink => navLink.classList.remove('active'));
+            e.target.classList.add('active');
+
+            const sectionId = e.target.getAttribute('href').substring(1) + '-section';
+            showSection(sectionId);
+
+            // Close mobile menu after selection
+            if (window.innerWidth < 768) {
+                closeMobileMenu();
+            }
+        }
+
+        // Add event listeners for desktop navigation
+        desktopNavLinks.forEach(link => {
+            link.addEventListener('click', (e) => handleNavClick(e, desktopNavLinks));
+        });
+
+        // Add event listeners for mobile navigation
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', (e) => handleNavClick(e, mobileNavLinks));
+        });
+
+        // Set initial active state and show first section
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('dashboard-docs-section');
+            document.querySelector('.desktop-nav-link[href="#dashboard-docs"]').classList.add('active');
+            document.querySelector('.mobile-nav-link[href="#dashboard-docs"]').classList.add('active');
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                closeMobileMenu();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
