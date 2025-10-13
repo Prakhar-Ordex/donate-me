@@ -117,6 +117,11 @@
                                 Progress Bar Setup Guide</a>
                         </li>
                         <li>
+                            <a href="#tutorial"
+                                class="block py-3 px-4 rounded-xl font-semibold text-gray-700 transition-colors hover:bg-gray-100 mobile-nav-link">Tutorial
+                                Video</a>
+                        </li>
+                        <li>
                             <a href="#settings-guide"
                                 class="block py-3 px-4 rounded-xl font-semibold text-gray-700 transition-colors hover:bg-gray-100 mobile-nav-link">Settings
                                 Guide</a>
@@ -154,6 +159,11 @@
                             Progress Bar Setup Guide</a>
                     </li>
                     <li>
+                        <a href="#tutorial"
+                            class="block py-3 px-4 rounded-xl font-semibold text-gray-700 transition-colors hover:bg-gray-100 desktop-nav-link">Tutorial
+                            Video</a>
+                    </li>
+                    <li>
                         <a href="#settings-guide"
                             class="block py-3 px-4 rounded-xl font-semibold text-gray-700 transition-colors hover:bg-gray-100 desktop-nav-link">Settings
                             Guide</a>
@@ -173,6 +183,41 @@
 
             <!-- Main Content Area -->
             <div class="bg-white p-4 md:p-8 rounded-2xl shadow-lg w-full md:w-3/4">
+
+                <!-- Tutorial Video Section -->
+                <section id="tutorial-section" class="content-section">
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Tutorial Video</h2>
+                    <p class="text-gray-600 mb-4">
+                        Watch our comprehensive tutorial on how to set up and use DonateMe effectively on your Shopify store.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-lg">
+                            <video 
+                                src="https://res.cloudinary.com/dyant84dg/video/upload/v1759923741/final_po4gno.mp4" 
+                                controls 
+                                autoplay 
+                                class="w-full h-full object-cover"
+                                poster="./assets/video-poster.png">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h3 class="text-2xl font-bold mb-4">What You'll Learn</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-600">
+                                <li>Complete setup process for DonateMe</li>
+                                <li>How to create and customize donation products</li>
+                                <li>Setting up widgets on your storefront</li>
+                                <li>Configuring donation progress bars</li>
+                                <li>Managing donation reports and analytics</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- <aside class="p-4 mt-6 text-sm text-purple-600 bg-purple-50 rounded-lg">
+                            <strong>Pro Tip:</strong> Bookmark this page to easily reference the tutorial video whenever you need a refresher on using DonateMe's features.
+                        </aside> -->
+                    </div>
+                </section>
 
                 <!-- FAQ Section -->
                 <section id="faq-section" class="content-section">
@@ -798,6 +843,7 @@ Best regards,
         const desktopNavLinks = document.querySelectorAll('.desktop-nav-link');
         const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
         const contentSections = document.querySelectorAll('.content-section');
+        const pageLinkElements = document.querySelectorAll('.mobile-page-link');
 
         // Mobile menu toggle
         mobileMenuBtn.addEventListener('click', () => {
@@ -817,11 +863,18 @@ Best regards,
         mobileBackdrop.addEventListener('click', closeMobileMenu);
 
         // Show section function
-        function showSection(sectionId) {
+        function showSection(sectionId, updateUrl = true) {
             contentSections.forEach(section => {
                 section.classList.add('hidden');
             });
             document.getElementById(sectionId).classList.remove('hidden');
+            
+            // Update URL hash without the "-section" suffix
+            if (updateUrl) {
+                const hashId = sectionId.replace('-section', '');
+                window.history.pushState(null, null, '#' + hashId);
+            }
+            
             // Smooth scroll to top when section changes
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -851,9 +904,40 @@ Best regards,
             link.addEventListener('click', (e) => handleNavClick(e, mobileNavLinks));
         });
 
-        // Set initial active state and show first section
+        // Set initial active state and show section based on URL hash
         document.addEventListener('DOMContentLoaded', () => {
-            showSection('dashboard-docs-section');
+            // Check if there's a hash in the URL
+            let sectionId;
+            let hash = window.location.hash;
+            
+            if (hash && hash.length > 1) {
+                // Remove the # symbol
+                hash = hash.substring(1);
+                sectionId = hash + '-section';
+                
+                // Check if the section exists
+                if (document.getElementById(sectionId)) {
+                    // Update active link states
+                    const desktopLink = document.querySelector(`.desktop-nav-link[href="#${hash}"]`);
+                    const mobileLink = document.querySelector(`.mobile-nav-link[href="#${hash}"]`);
+                    
+                    if (desktopLink) {
+                        desktopNavLinks.forEach(link => link.classList.remove('active'));
+                        desktopLink.classList.add('active');
+                    }
+                    
+                    if (mobileLink) {
+                        mobileNavLinks.forEach(link => link.classList.remove('active'));
+                        mobileLink.classList.add('active');
+                    }
+                    
+                    showSection(sectionId, false);
+                    return;
+                }
+            }
+            
+            // Default to dashboard if no valid hash
+            showSection('dashboard-docs-section', false);
             document.querySelector('.desktop-nav-link[href="#dashboard-docs"]').classList.add('active');
             document.querySelector('.mobile-nav-link[href="#dashboard-docs"]').classList.add('active');
         });
@@ -862,6 +946,29 @@ Best regards,
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 768) {
                 closeMobileMenu();
+            }
+        });
+        
+        // Handle browser back/forward navigation
+        window.addEventListener('popstate', () => {
+            let hash = window.location.hash;
+            if (hash && hash.length > 1) {
+                hash = hash.substring(1);
+                const sectionId = hash + '-section';
+                
+                if (document.getElementById(sectionId)) {
+                    // Update active link states
+                    desktopNavLinks.forEach(link => link.classList.remove('active'));
+                    mobileNavLinks.forEach(link => link.classList.remove('active'));
+                    
+                    const desktopLink = document.querySelector(`.desktop-nav-link[href="#${hash}"]`);
+                    const mobileLink = document.querySelector(`.mobile-nav-link[href="#${hash}"]`);
+                    
+                    if (desktopLink) desktopLink.classList.add('active');
+                    if (mobileLink) mobileLink.classList.add('active');
+                    
+                    showSection(sectionId, false);
+                }
             }
         });
     </script>
